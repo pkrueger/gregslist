@@ -1,21 +1,38 @@
-import { setHTML } from "../Utils/Writer.js"
+// @ts-nocheck
+import { appState } from "../AppState.js";
+import { jobsService } from "../Services/JobsService.js";
+import { getFormData } from "../Utils/FormHandler.js";
+import { setHTML } from "../Utils/Writer.js";
 
 function drawJobs() {
-  setHTML('listings', /*html*/`
-  <div>
-    <h1>YOUR JOB STARTS HERE</h1>
-  </div>
-  `)
+  let template = "";
+  for (let job of appState.jobs) {
+    template += job.JobCardTemplate;
+  }
+  setHTML("listings", template);
+  setHTML("formGoHere", appState.jobForm);
+  setHTML("buttonGoHere", appState.jobButton);
 }
-
 
 export class JobsController {
   constructor() {
-    console.log('the jobs controller')
-
+    appState.on("jobs", drawJobs);
   }
 
   showJobs() {
-    drawJobs()
+    drawJobs();
+  }
+
+  addJob() {
+    try {
+      window.event.preventDefault();
+      const form = window.event.target;
+      let formData = getFormData(form);
+
+      jobsService.addJob(formData);
+      form.reset();
+    } catch (error) {
+      console.error("addJob", error);
+    }
   }
 }
