@@ -40,32 +40,32 @@ export let HouseFormTemplate = /*html*/ `
   <form onsubmit="app.housesController.addHouse()">
 
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="bedrooms" required>
+      <input type="number" class="form-control" name="bedrooms" required placeholder="Bedrooms">
       <label for="bedrooms">Bedrooms</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="bathrooms" required>
+      <input type="number" class="form-control" name="bathrooms" required placeholder="Bathrooms">
       <label for="bathrooms">Bathrooms</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="levels" required>
+      <input type="number" class="form-control" name="levels" required placeholder="Levels">
       <label for="levels">Levels</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="year" required>
+      <input type="number" class="form-control" name="year" required placeholder="Year Built">
       <label for="year">Year Built</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="price" required>
+      <input type="number" class="form-control" name="price" required placeholder="Price">
       <label for="price">Price</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="url" class="form-control" name="imgUrl">
+      <input type="url" class="form-control" name="imgUrl" placeholder="Describe your Listing">
       <label for="imgUrl">Image Url <i>(We are too lazy for uploads)</i></label>
     </div>
 
@@ -75,8 +75,8 @@ export let HouseFormTemplate = /*html*/ `
     </div>
 
     <div class="d-flex my-4 gap-5 align-items-center">
-      <button class="btn" type="reset">Cancel</button>
       <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn" type="reset">Cancel</button>
     </div>
 
   </form>

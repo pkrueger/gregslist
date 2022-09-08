@@ -36,22 +36,22 @@ export function JobFormTemplate() {
   <form onsubmit="app.jobsController.addJob()">
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" name="company" required>
+      <input type="text" class="form-control" name="company" required placeholder="Company">
       <label for="company">Company</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" name="jobTitle" required>
+      <input type="text" class="form-control" name="jobTitle" required placeholder="Job Title">
       <label for="jobTitle">Job Title</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="hours" required>
+      <input type="number" class="form-control" name="hours" required placeholder="Hours">
       <label for="hours">Hours</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="rate" required>
+      <input type="number" class="form-control" name="rate" required placeholder="Rate">
       <label for="rate">Rate</label>
     </div>
 
@@ -61,8 +61,8 @@ export function JobFormTemplate() {
     </div>
 
     <div class="d-flex my-4 gap-5 align-items-center">
-      <button class="btn" type="reset">Cancel</button>
       <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn" type="reset">Cancel</button>
     </div>
 
   </form>

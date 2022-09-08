@@ -43,17 +43,17 @@ export let ConnectionFormTemplate = /*html*/ `
 <form onsubmit="app.connectionsController.addConnection()">
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" name="gender" required>
+      <input type="text" class="form-control" name="gender" required placeholder="Gender">
       <label for="gender">Gender</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" name="lookingGender" required>
+      <input type="text" class="form-control" name="lookingGender" required placeholder="Who are you looking for?">
       <label for="lookingGender">Who are you looking for?</label>
     </div>
 
     <div class="form-floating mb-3">
-      <input type="url" class="form-control" name="imgUrl">
+      <input type="url" class="form-control" name="imgUrl" placeholder="Image Url (We are too lazy for uploads)">
       <label for="imgUrl">Image Url <i>(We are too lazy for uploads)</i></label>
     </div>
 
@@ -63,8 +63,8 @@ export let ConnectionFormTemplate = /*html*/ `
     </div>
 
     <div class="d-flex my-4 gap-5 align-items-center">
-      <button class="btn" type="reset">Cancel</button>
       <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn" type="reset">Cancel</button>
     </div>
 
   </form>
