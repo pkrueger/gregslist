@@ -36,8 +36,7 @@ export class House {
   }
 }
 
-export function HouseFormTemplate() {
-  return /*html*/ `
+export let HouseFormTemplate = /*html*/ `
   <form onsubmit="app.housesController.addHouse()">
 
     <div class="form-floating mb-3">
@@ -82,7 +81,6 @@ export function HouseFormTemplate() {
 
   </form>
   `;
-}
 
 export function HouseButtonTemplate() {
   return /*html*/ `

@@ -5,6 +5,11 @@ import {
   HouseButtonTemplate,
   HouseFormTemplate,
 } from "./Models/House.js";
+import {
+  Connection,
+  ConnectionButtonTemplate,
+  ConnectionFormTemplate,
+} from "./Models/Connection.js";
 import { EventEmitter } from "./Utils/EventEmitter.js";
 import { isValidProp } from "./Utils/isValidProp.js";
 import { loadState } from "./Utils/Store.js";
@@ -22,8 +27,12 @@ class AppState extends EventEmitter {
 
   /** @type {import('./Models/House').House[]} */
   houses = loadState("houses", House);
-  houseForm = HouseFormTemplate();
+  houseForm = HouseFormTemplate;
   houseButton = HouseButtonTemplate();
+
+  connections = loadState("connections", Connection);
+  connectionButton = ConnectionButtonTemplate;
+  connectionForm = ConnectionFormTemplate;
 }
 
 export const appState = new Proxy(new AppState(), {
