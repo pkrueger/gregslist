@@ -3,7 +3,7 @@ import { generateId } from "../Utils/generateId.js";
 export class Car {
   /**
    * The data needed to make a car
-   * @param {{make: string, model: string, year: number, price: number, description: string, imgUrl: string, id:string}} data
+   * @param {{make: string, model: string, year: number, price: number, description: string, imgUrl: string, id?:string}} data
    */
   constructor(data) {
     this.id = data.id;
@@ -29,6 +29,10 @@ export class Car {
               <strong>$ ${this.price}</strong>
             </p>
             <p>${this.description}</p>
+          </div>
+          <div class="card-footer d-flex align-items-center justify-content-around">
+            <button class="btn text-uppercase" onclick="app.carsController.deleteCar('${this.id}')">Delete</button>
+            <button class="btn text-uppercase text-success" data-bs-toggle="offcanvas" data-bs-target="#rightBar" onclick="app.carsController.beginEdit('${this.id}')">Edit</button>
           </div>
         </div>
       </div>
