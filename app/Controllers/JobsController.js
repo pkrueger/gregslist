@@ -3,6 +3,7 @@ import { appState } from "../AppState.js";
 import { Job } from "../Models/Job.js";
 import { jobsService } from "../Services/JobsService.js";
 import { getFormData } from "../Utils/FormHandler.js";
+import { Pop } from "../Utils/Pop.js";
 import { setHTML } from "../Utils/Writer.js";
 
 function _drawJobs() {
@@ -11,8 +12,8 @@ function _drawJobs() {
     template += job.JobCardTemplate;
   }
   setHTML("listings", template);
-  setHTML("formGoHere", Job.JobFormTemplate);
-  setHTML("buttonGoHere", Job.JobButtonTemplate);
+  setHTML("canvasRight", Job.JobFormTemplate());
+  setHTML("buttonGoHere", Job.JobButtonTemplate());
 }
 
 export class JobsController {
@@ -21,7 +22,16 @@ export class JobsController {
   }
 
   showJobs() {
-    _drawJobs();
+    this.getJobs();
+  }
+
+  async getJobs() {
+    try {
+      await jobsService.getJobs();
+    } catch (error) {
+      console.error("[GetJobs]", error);
+      Pop.error(error);
+    }
   }
 
   addJob() {

@@ -7,13 +7,13 @@ import { loadState } from "./Utils/Store.js";
 
 class AppState extends EventEmitter {
   /** @type {import('./Models/Car').Car[]} */
-  cars = loadState("cars", Car);
+  cars = [];
 
   /** @type {import('./Models/Job').Job[]} */
-  jobs = loadState("jobs", Job);
+  jobs = [];
 
   /** @type {import('./Models/House').House[]} */
-  houses = loadState("houses", House);
+  houses = [];
 }
 
 export const appState = new Proxy(new AppState(), {

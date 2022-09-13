@@ -3,6 +3,7 @@ import { appState } from "../AppState.js";
 import { House } from "../Models/House.js";
 import { housesService } from "../Services/HousesService.js";
 import { getFormData } from "../Utils/FormHandler.js";
+import { Pop } from "../Utils/Pop.js";
 import { setHTML } from "../Utils/Writer.js";
 
 function _drawHouses() {
@@ -11,8 +12,8 @@ function _drawHouses() {
     template += house.HouseCardTemplate;
   }
   setHTML("listings", template);
-  setHTML("formGoHere", House.HouseFormTemplate);
-  setHTML("buttonGoHere", House.HouseButtonTemplate);
+  setHTML("canvasRight", House.HouseFormTemplate());
+  setHTML("buttonGoHere", House.HouseButtonTemplate());
 }
 
 export class HousesController {
@@ -21,7 +22,16 @@ export class HousesController {
   }
 
   showHouses() {
-    _drawHouses();
+    this.getHouses();
+  }
+
+  async getHouses() {
+    try {
+      await housesService.getHouses();
+    } catch (error) {
+      console.error("[GetHouses]", error);
+      Pop.error(error);
+    }
   }
 
   addHouse() {

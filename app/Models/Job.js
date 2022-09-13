@@ -2,10 +2,10 @@ import { generateId } from "../Utils/generateId.js";
 
 export class Job {
   /**
-   * @param {{company: string, jobTitle: string, hours: number, rate: number, description: string}} data
+   * @param {{id: string, company: string, jobTitle: string, hours: number, rate: number, description: string}} data
    */
   constructor(data) {
-    this.id = generateId();
+    this.id = data.id;
     this.company = data.company;
     this.jobTitle = data.jobTitle;
     this.hours = data.hours;
@@ -35,7 +35,7 @@ export class Job {
     <button
       class="btn btn-outline-light"
       data-bs-toggle="offcanvas"
-      data-bs-target="#banana"
+      data-bs-target="#canvasRight"
     >
       💵 Add Job
     </button>
@@ -44,39 +44,51 @@ export class Job {
 
   static JobFormTemplate() {
     return /*html*/ `
-    <form onsubmit="app.jobsController.addJob()">
-  
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="company" required placeholder="Company">
-        <label for="company">Company</label>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasRightLabel">Add Job</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
       </div>
-  
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="jobTitle" required placeholder="Job Title">
-        <label for="jobTitle">Job Title</label>
+      <div id="formGoHere" class="offcanvas-body">
+        <!-- TODO build forms YIKES put them here DYNAMICALLY YIKES !!!!! -->
+        <form onsubmit="app.jobsController.addJob()">
+      
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="company" required placeholder="Company">
+            <label for="company">Company</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="jobTitle" required placeholder="Job Title">
+            <label for="jobTitle">Job Title</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="hours" required placeholder="Hours">
+            <label for="hours">Hours</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="rate" required placeholder="Rate">
+            <label for="rate">Rate</label>
+          </div>
+      
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Describe your Listing" name="description" required></textarea>
+            <label for="description">Description</label>
+          </div>
+      
+          <div class="d-flex my-4 gap-5 align-items-center">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn" type="reset">Cancel</button>
+          </div>
+      
+        </form>
       </div>
-  
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="hours" required placeholder="Hours">
-        <label for="hours">Hours</label>
-      </div>
-  
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="rate" required placeholder="Rate">
-        <label for="rate">Rate</label>
-      </div>
-  
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="Describe your Listing" name="description" required></textarea>
-        <label for="description">Description</label>
-      </div>
-  
-      <div class="d-flex my-4 gap-5 align-items-center">
-        <button class="btn btn-primary" type="submit">Submit</button>
-        <button class="btn" type="reset">Cancel</button>
-      </div>
-  
-    </form>
     `;
   }
 }

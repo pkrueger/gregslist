@@ -2,10 +2,10 @@ import { generateId } from "../Utils/generateId.js";
 
 export class House {
   /**
-   * @param {{bedrooms: number, bathrooms: number, levels: number, year: number, price: number, imgUrl: string, description: string}} data
+   * @param {{id: string, bedrooms: number, bathrooms: number, levels: number, year: number, price: number, imgUrl: string, description: string}} data
    */
   constructor(data) {
-    this.id = generateId();
+    this.id = data.id;
     this.bedrooms = data.bedrooms;
     this.bathrooms = data.bathrooms;
     this.levels = data.levels;
@@ -40,7 +40,7 @@ export class House {
     <button
       class="btn btn-outline-light"
       data-bs-toggle="offcanvas"
-      data-bs-target="#banana"
+      data-bs-target="#canvasRight"
     >
       🏠 Add House
     </button>
@@ -48,50 +48,62 @@ export class House {
   }
 
   static HouseFormTemplate() {
-    /*html*/ `
-    <form onsubmit="app.housesController.addHouse()">
-  
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="bedrooms" required placeholder="Bedrooms">
-        <label for="bedrooms">Bedrooms</label>
+    return /*html*/ `
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="canvasRightLabel">Add House</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
       </div>
-  
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="bathrooms" required placeholder="Bathrooms">
-        <label for="bathrooms">Bathrooms</label>
+      <div id="formGoHere" class="offcanvas-body">
+        <!-- TODO build forms YIKES put them here DYNAMICALLY YIKES !!!!! -->
+        <form onsubmit="app.housesController.addHouse()">
+      
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="bedrooms" required placeholder="Bedrooms">
+            <label for="bedrooms">Bedrooms</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="bathrooms" required placeholder="Bathrooms">
+            <label for="bathrooms">Bathrooms</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="levels" required placeholder="Levels">
+            <label for="levels">Levels</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="year" required placeholder="Year Built">
+            <label for="year">Year Built</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="price" required placeholder="Price">
+            <label for="price">Price</label>
+          </div>
+      
+          <div class="form-floating mb-3">
+            <input type="url" class="form-control" name="imgUrl" placeholder="Describe your Listing">
+            <label for="imgUrl">Image Url <i>(We are too lazy for uploads)</i></label>
+          </div>
+      
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Describe your Listing" name="description" required></textarea>
+            <label for="description">Description</label>
+          </div>
+      
+          <div class="d-flex my-4 gap-5 align-items-center">
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn" type="reset">Cancel</button>
+          </div>
+      
+        </form>
       </div>
-  
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="levels" required placeholder="Levels">
-        <label for="levels">Levels</label>
-      </div>
-  
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="year" required placeholder="Year Built">
-        <label for="year">Year Built</label>
-      </div>
-  
-      <div class="form-floating mb-3">
-        <input type="number" class="form-control" name="price" required placeholder="Price">
-        <label for="price">Price</label>
-      </div>
-  
-      <div class="form-floating mb-3">
-        <input type="url" class="form-control" name="imgUrl" placeholder="Describe your Listing">
-        <label for="imgUrl">Image Url <i>(We are too lazy for uploads)</i></label>
-      </div>
-  
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="Describe your Listing" name="description" required></textarea>
-        <label for="description">Description</label>
-      </div>
-  
-      <div class="d-flex my-4 gap-5 align-items-center">
-        <button class="btn btn-primary" type="submit">Submit</button>
-        <button class="btn" type="reset">Cancel</button>
-      </div>
-  
-    </form>
     `;
   }
 }
