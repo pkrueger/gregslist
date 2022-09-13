@@ -1,43 +1,30 @@
 import { appState } from "../AppState.js";
+import { Car } from "../Models/Car.js";
 import { carsService } from "../Services/CarsService.js";
 import { getFormData } from "../Utils/FormHandler.js";
 import { setHTML } from "../Utils/Writer.js";
 
-function drawCars() {
+function _drawCars() {
   let template = "";
   appState.cars.forEach((car) => (template += car.CarCardTemplate));
   // TODO trigger bad set
   setHTML("listings", template);
-  setHTML("formGoHere", appState.carForm);
-  setHTML("buttonGoHere", appState.carButton);
+  setHTML("formGoHere", Car.CarFormTemplate);
+  setHTML("buttonGoHere", Car.CarButtonTemplate);
 }
 
 export class CarsController {
   constructor() {
-    drawCars(); // NOTE draw cars on page load do not do this for houses or jobs
-
-    // NOTE Sets up a listener to be triggered each time a change occurs to the cars array causing the page to re-render each of the cars
-    appState.on("cars", drawCars);
+    _drawCars();
+    appState.on("cars", _drawCars);
   }
 
   showCars() {
-    drawCars();
+    _drawCars();
   }
-
-  // test() {
-  //   // NOTE NEVER DO THIS TESTING ONLY
-
-  //   let testCar = new Car({ make: 'Test', model: 'Car', imgUrl: 'https://conti-engineering.com/wp-content/uploads/2020/05/VirtualVehicleTest_Beitrag.jpg', year: 2000, price: 2000, description: 'test only' })
-
-  //   // NEVER manipulate data directly from a controller its a big NO NO
-  //   appState.cars = [testCar, ...appState.cars]
-
-  // }
 
   addCar() {
     try {
-      // REVIEW FORM SUBMISSION EXAMPLE
-      // THE THREE THINGS WE DO WITH EVERY FORM SUBMISSION!!!!
       // @ts-ignore
       window.event.preventDefault();
       // @ts-ignore
@@ -49,7 +36,7 @@ export class CarsController {
       // @ts-ignore
       form.reset();
     } catch (error) {
-      console.error("addCar", error);
+      console.error("[AddCar]", error);
     }
   }
 }

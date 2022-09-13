@@ -1,26 +1,27 @@
 // @ts-nocheck
 import { appState } from "../AppState.js";
+import { Job } from "../Models/Job.js";
 import { jobsService } from "../Services/JobsService.js";
 import { getFormData } from "../Utils/FormHandler.js";
 import { setHTML } from "../Utils/Writer.js";
 
-function drawJobs() {
+function _drawJobs() {
   let template = "";
   for (let job of appState.jobs) {
     template += job.JobCardTemplate;
   }
   setHTML("listings", template);
-  setHTML("formGoHere", appState.jobForm);
-  setHTML("buttonGoHere", appState.jobButton);
+  setHTML("formGoHere", Job.JobFormTemplate);
+  setHTML("buttonGoHere", Job.JobButtonTemplate);
 }
 
 export class JobsController {
   constructor() {
-    appState.on("jobs", drawJobs);
+    appState.on("jobs", _drawJobs);
   }
 
   showJobs() {
-    drawJobs();
+    _drawJobs();
   }
 
   addJob() {

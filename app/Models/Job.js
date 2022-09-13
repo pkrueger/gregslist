@@ -29,54 +29,54 @@ export class Job {
     </div>
     `;
   }
-}
 
-export function JobFormTemplate() {
-  return /*html*/ `
-  <form onsubmit="app.jobsController.addJob()">
+  static JobButtonTemplate() {
+    return /*html*/ `
+    <button
+      class="btn btn-outline-light"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#banana"
+    >
+      💵 Add Job
+    </button>
+    `;
+  }
 
-    <div class="form-floating mb-3">
-      <input type="text" class="form-control" name="company" required placeholder="Company">
-      <label for="company">Company</label>
-    </div>
-
-    <div class="form-floating mb-3">
-      <input type="text" class="form-control" name="jobTitle" required placeholder="Job Title">
-      <label for="jobTitle">Job Title</label>
-    </div>
-
-    <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="hours" required placeholder="Hours">
-      <label for="hours">Hours</label>
-    </div>
-
-    <div class="form-floating mb-3">
-      <input type="number" class="form-control" name="rate" required placeholder="Rate">
-      <label for="rate">Rate</label>
-    </div>
-
-    <div class="form-floating">
-      <textarea class="form-control" placeholder="Describe your Listing" name="description" required></textarea>
-      <label for="description">Description</label>
-    </div>
-
-    <div class="d-flex my-4 gap-5 align-items-center">
-      <button class="btn btn-primary" type="submit">Submit</button>
-      <button class="btn" type="reset">Cancel</button>
-    </div>
-
-  </form>
-  `;
-}
-
-export function JobButtonTemplate() {
-  return /*html*/ `
-  <button
-    class="btn btn-outline-light"
-    data-bs-toggle="offcanvas"
-    data-bs-target="#banana"
-  >
-    💵 Add Job
-  </button>
-  `;
+  static JobFormTemplate() {
+    return /*html*/ `
+    <form onsubmit="app.jobsController.addJob()">
+  
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="company" required placeholder="Company">
+        <label for="company">Company</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="jobTitle" required placeholder="Job Title">
+        <label for="jobTitle">Job Title</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" name="hours" required placeholder="Hours">
+        <label for="hours">Hours</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control" name="rate" required placeholder="Rate">
+        <label for="rate">Rate</label>
+      </div>
+  
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Describe your Listing" name="description" required></textarea>
+        <label for="description">Description</label>
+      </div>
+  
+      <div class="d-flex my-4 gap-5 align-items-center">
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn" type="reset">Cancel</button>
+      </div>
+  
+    </form>
+    `;
+  }
 }

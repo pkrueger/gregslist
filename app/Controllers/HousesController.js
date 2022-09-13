@@ -1,26 +1,27 @@
 // @ts-nocheck
 import { appState } from "../AppState.js";
+import { House } from "../Models/House.js";
 import { housesService } from "../Services/HousesService.js";
 import { getFormData } from "../Utils/FormHandler.js";
 import { setHTML } from "../Utils/Writer.js";
 
-function drawHouses() {
+function _drawHouses() {
   let template = "";
   for (let house of appState.houses) {
     template += house.HouseCardTemplate;
   }
   setHTML("listings", template);
-  setHTML("formGoHere", appState.houseForm);
-  setHTML("buttonGoHere", appState.houseButton);
+  setHTML("formGoHere", House.HouseFormTemplate);
+  setHTML("buttonGoHere", House.HouseButtonTemplate);
 }
 
 export class HousesController {
   constructor() {
-    appState.on("houses", drawHouses);
+    appState.on("houses", _drawHouses);
   }
 
   showHouses() {
-    drawHouses();
+    _drawHouses();
   }
 
   addHouse() {
