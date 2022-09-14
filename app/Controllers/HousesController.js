@@ -34,16 +34,25 @@ export class HousesController {
     }
   }
 
-  addHouse() {
+  async addHouse() {
     try {
       window.event.preventDefault();
       const form = window.event.target;
       let formData = getFormData(form);
 
-      housesService.addHouse(formData);
+      await housesService.addHouse(formData);
       form.reset();
     } catch (error) {
-      console.error("addHouse", error);
+      console.error("[AddHouse]", error);
+    }
+  }
+
+  async deleteHouse(id) {
+    try {
+      await housesService.deleteHouse(id);
+    } catch (error) {
+      console.error("[DeleteHouse]", error);
+      Pop.error(error);
     }
   }
 }

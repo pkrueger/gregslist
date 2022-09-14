@@ -34,16 +34,25 @@ export class JobsController {
     }
   }
 
-  addJob() {
+  async addJob() {
     try {
       window.event.preventDefault();
       const form = window.event.target;
       let formData = getFormData(form);
 
-      jobsService.addJob(formData);
+      await jobsService.addJob(formData);
       form.reset();
     } catch (error) {
-      console.error("addJob", error);
+      console.error("[AddJob]", error);
+    }
+  }
+
+  async deleteJob(id) {
+    try {
+      await jobsService.deleteJob(id);
+    } catch (error) {
+      console.error("[DeleteJob]", error);
+      Pop.error(error);
     }
   }
 }

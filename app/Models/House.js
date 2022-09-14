@@ -30,6 +30,10 @@ export class House {
           <p class="mb-2">${this.description}</p>
           <p class="m-0">Built in ${this.year}</p>
         </div>
+        <div class="card-footer d-flex align-items-center justify-content-around">
+          <button class="btn text-uppercase" onclick="app.housesController.deleteHouse('${this.id}')">Delete</button>
+          <button class="btn text-uppercase text-success" data-bs-toggle="offcanvas" data-bs-target="#rightBar" onclick="app.housesController.beginEdit('${this.id}')">Edit</button>
+        </div>
       </div>
     </div>
     `;

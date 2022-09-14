@@ -10,13 +10,13 @@ class CarsService {
     appState.cars = res.data.map((c) => new Car(c));
   }
 
-  addCar(formData) {
-    let res = SandboxServer.post("/api/cars", formData);
+  async addCar(formData) {
+    const res = await SandboxServer.post("/api/cars", formData);
     appState.cars = [...appState.cars, new Car(res.data)];
   }
 
   async deleteCar(id) {
-    if (!(await Pop.confirm("Delete this car?"))) {
+    if (!(await Pop.confirm("Delete this listing?"))) {
       return;
     }
 

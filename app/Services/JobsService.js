@@ -1,5 +1,6 @@
 import { appState } from "../AppState.js";
 import { Job } from "../Models/Job.js";
+import { Pop } from "../Utils/Pop.js";
 import { saveState } from "../Utils/Store.js";
 import { SandboxServer } from "./AxiosService.js";
 
@@ -10,10 +11,18 @@ class JobsService {
     appState.jobs = res.data.map((j) => new Job(j));
   }
 
-  addJob(formData) {
-    let job = new Job(formData);
-    appState.jobs = [job, ...appState.jobs];
-    saveState("jobs", appState.jobs);
+  async addJob(formData) {
+    const res = await SandboxServer.post("/api/jobs", formData);
+    appState.jobs = [...appState.jobs, new Job(res.data)];
+  }
+
+  async deleteJob(id) {
+    if (!(await Pop.confirm("Delete this listing?"))) {
+      return;
+    }
+
+    SandboxServer.delete(`/api/jobs/${id}`);
+    appState.jobs = appState.jobs.filter((j) => j.id != id);
   }
 }
 

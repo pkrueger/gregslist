@@ -25,6 +25,10 @@ export class Job {
           <p class="mb-2">${this.hours} hours per week | $${this.rate} per hour</p>
           <p class="m-0">${this.description}</p>
         </div>
+        <div class="card-footer d-flex align-items-center justify-content-around">
+          <button class="btn text-uppercase" onclick="app.jobsController.deleteJob('${this.id}')">Delete</button>
+          <button class="btn text-uppercase text-success" data-bs-toggle="offcanvas" data-bs-target="#rightBar" onclick="app.jobsController.beginEdit('${this.id}')">Edit</button>
+        </div>
       </div>
     </div>
     `;
